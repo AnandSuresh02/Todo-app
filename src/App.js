@@ -1,25 +1,23 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import TodoList from './components/TodoList';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [todos, setTodos] = useState([]);
+  const addTodo = text => setTodos([...todos, { text, isEditing: false }]);
+  const deleteTodo = index => setTodos(todos.filter((_, i) => i !== index));
+  const editTodo = (index, text) => {
+    const newTodos = [...todos];
+    newTodos[index] = { ...newTodos[index], text, isEditing: false };
+    setTodos(newTodos);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1>Todo List</h1>
+      <TodoList todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} editTodo={editTodo} />
     </div>
   );
-}
+};
 
 export default App;
