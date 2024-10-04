@@ -82,6 +82,11 @@ header button:hover {
   padding: 20px;
 }
 
+.app nav{
+  align-items: center;
+  margin: auto;
+}
+
 h1 {
   color: #ffffff;
 }
@@ -92,6 +97,15 @@ h5 {
 
 h4 {
   margin-bottom: 1px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #121212;
+  color: #E0E0E0;
 }
 
 .login-panel {

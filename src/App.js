@@ -9,21 +9,27 @@ import './App.css';
 
 const App = () => {
   const [user, setUser] = useState(null);
+  const [checkingAuth, setCheckingAuth] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setCheckingAuth(false);
     });
 
     return () => unsubscribe();
   }, []);
 
+  if (checkingAuth) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Router>
       <div className="app">
         <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={user ? <Navigate to="/dashboard" /> : <LandingPage />} />
+          <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
           <Route path="/dashboard" element={user ? <Dashboard user={user} /> : <Navigate to="/login" />} />
         </Routes>
       </div>
