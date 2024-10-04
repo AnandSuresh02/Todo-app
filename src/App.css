@@ -86,6 +86,25 @@ h1 {
   color: #ffffff;
 }
 
+h5 {
+  margin: 1px;
+}
+
+h4 {
+  margin-bottom: 1px;
+}
+
+.login-panel {
+  background-color: #585858;
+  color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.24);
+  border-radius: 30px;
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+}
+
 .todo-list {
   background-color: #585858;
   color: #ffffff;
@@ -94,7 +113,7 @@ h1 {
   border-radius: 30px;
 }
 
-.todo-list ::placeholder{
+.todo-list, .login-panel ::placeholder{
   color: #cacaca;
 }
 
@@ -132,7 +151,7 @@ input {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   border-radius: 50px;
   width: 70%;
-  margin-right: 20px;
+  margin: 10px;
 }
 
 button {
@@ -143,6 +162,7 @@ button {
   color: rgb(255, 255, 255);
   border-radius: 50px;
   cursor: pointer;
+  margin: 10px;
 }
 
 button:hover {

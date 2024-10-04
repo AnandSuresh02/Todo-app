@@ -1,0 +1,56 @@
+import React from 'react';
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPhoneNumber, signInWithPopup } from 'firebase/auth';
+import { auth } from '../firebaseConfig';
+import { useNavigate } from 'react-router-dom';
+
+const Login = () => {
+  const navigate = useNavigate();
+
+  const handleLoginSuccess = () => {
+    navigate('../Dashboard');
+  };
+
+  const handleEmailLogin = async (email, password) => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      handleLoginSuccess();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handlePhoneLogin = async (phone, appVerifier) => {
+    try {
+      await signInWithPhoneNumber(auth, phone, appVerifier);
+      handleLoginSuccess();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleOAuthLogin = async (provider) => {
+    try {
+      await signInWithPopup(auth, provider);
+      handleLoginSuccess();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <div className="login-panel">
+      <h2>Login</h2>
+      <h4>Login with Email</h4>
+      <form onSubmit={(e) => { e.preventDefault(); handleEmailLogin(e.target.email.value, e.target.password.value); }}>
+        <input type="email" name="email" placeholder="Email" />
+        <input type="password" name="password" placeholder="Password" />
+        <button type="submit">Login</button>
+      </form>
+      <h5>or</h5>
+
+      <button onClick={() => handleOAuthLogin(new GoogleAuthProvider())}>Login with Google</button>
+    </div>
+  );
+};
+
+export default Login;
