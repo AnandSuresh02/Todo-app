@@ -113,12 +113,13 @@ h4 {
   border-radius: 30px;
 }
 
-.todo-list, .login-panel ::placeholder{
+.todo-list, .login-panel, ::placeholder{
   color: #cacaca;
 }
 
 .todo-item {
   display: flex;
+  color: white;
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;;
