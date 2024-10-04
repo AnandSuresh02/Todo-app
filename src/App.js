@@ -1,23 +1,19 @@
-import React, { useState } from 'react';
-import TodoList from './components/TodoList';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Landing from './components/Landing';
 import './App.css';
 
 const App = () => {
-  const [todos, setTodos] = useState([]);
-  const addTodo = text => setTodos([...todos, { text, isEditing: false }]);
-  const deleteTodo = index => setTodos(todos.filter((_, i) => i !== index));
-  const editTodo = (index, text) => {
-    const newTodos = [...todos];
-    newTodos[index] = { ...newTodos[index], text, isEditing: false };
-    setTodos(newTodos);
-  };
-
   return (
-    <div className="app">
-      <h1>Todo List</h1>
-      <TodoList todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} editTodo={editTodo} />
-    </div>
+    <Router>
+      <div className="app">
+        <Routes>
+          <Route path="/" element={<Landing />} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
 export default App;
+
