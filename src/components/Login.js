@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPhoneNumber, signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,15 +13,6 @@ const Login = () => {
   const handleEmailLogin = async (email, password) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      handleLoginSuccess();
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handlePhoneLogin = async (phone, appVerifier) => {
-    try {
-      await signInWithPhoneNumber(auth, phone, appVerifier);
       handleLoginSuccess();
     } catch (error) {
       console.error(error);
