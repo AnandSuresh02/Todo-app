@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebaseConfig';
+import Settings from './Settings';
 import TodoList from './TodoList';
 import '../App.css';
+import defaultProfilePic from '../images/defaultProfilePic.png';
 
-const App = () => {
+const App = ({ user }) => {
   const [todos, setTodos] = useState([]);
   const addTodo = text => setTodos([...todos, { text, isEditing: false }]);
   const deleteTodo = index => setTodos(todos.filter((_, i) => i !== index));
@@ -16,6 +18,7 @@ const App = () => {
 
   const navigate = useNavigate();
   const [profileOpen, setProfileOpen] = useState(false);
+  const profilePic = user.photoURL || defaultProfilePic;
 
   const handleSignOut = () => {
     auth.signOut();
@@ -27,8 +30,8 @@ const App = () => {
       <nav>
         <h2>Todo App</h2>
         <div className="profile">
-          <button onClick={() => setProfileOpen(!profileOpen)}>Profile</button>
-          {profileOpen && (
+        <img src={profilePic} alt="Profile" onClick={() => setProfileOpen(!profileOpen)} />
+        {profileOpen && (
             <div className="profile-dropdown">
               <button onClick={handleSignOut}>Sign Out</button>
               <button onClick={() => navigate('/settings')}>Settings</button>
