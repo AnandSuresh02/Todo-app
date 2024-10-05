@@ -15,6 +15,7 @@ const App = () => {
   };
 
   const navigate = useNavigate();
+  const [profileOpen, setProfileOpen] = useState(false);
 
   const handleSignOut = () => {
     auth.signOut();
@@ -25,7 +26,15 @@ const App = () => {
     <div className="app">
       <nav>
         <h2>Todo App</h2>
-        <button onClick={handleSignOut}>Sign Out</button>
+        <div className="profile">
+          <button onClick={() => setProfileOpen(!profileOpen)}>Profile</button>
+          {profileOpen && (
+            <div className="profile-dropdown">
+              <button onClick={handleSignOut}>Sign Out</button>
+              <button onClick={() => navigate('/settings')}>Settings</button>
+            </div>
+          )}
+        </div>
       </nav>
       <h1>Todo List</h1>
       <TodoList todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} editTodo={editTodo} />
