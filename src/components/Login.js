@@ -35,7 +35,9 @@ const Login = () => {
       <form onSubmit={(e) => { e.preventDefault(); handleEmailLogin(e.target.email.value, e.target.password.value); }}>
         <input type="email" name="email" placeholder="Email" />
         <input type="password" name="password" placeholder="Password" />
-        <button type="submit">Login</button>
+      <div>
+      <button type="submit">Login</button>
+      </div>
       </form>
       <h5>or</h5>
 
