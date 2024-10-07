@@ -235,6 +235,15 @@ h4 {
   border-radius: 30px;
 }
 
+.todo-item.expanded button {
+  margin-left: 10px;
+  background-color: #757575;
+  border: none;
+  color: white;
+  border-radius: 30px;
+  padding: 5px 10px;
+}
+
 .todo-item .todo-main {
   display: flex;
   justify-content: space-between;
@@ -269,6 +278,15 @@ h4 {
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.24);
   border-radius: 30px;
+}
+
+.subtasks button {
+  margin-left: 10px;
+  background-color: #757575;
+  border: none;
+  color: white;
+  border-radius: 30px;
+  padding: 5px 10px;
 }
 
 .subtask-item {
