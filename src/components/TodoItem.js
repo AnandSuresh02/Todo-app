@@ -7,13 +7,17 @@ const TodoItem = ({ todo, deleteTodo, editTodo }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleDone = () => {
-    editTodo({ ...todo, isDone: !todo.isDone });
+    const newSubtasks = subtasks.map(subtask => ({ ...subtask, isDone: !todo.isDone }));
+    setSubtasks(newSubtasks);
+    editTodo({ ...todo, isDone: !todo.isDone, subtasks: newSubtasks });
   };
 
   const addSubtask = text => {
-    const newSubtasks = [...subtasks, { text, isEditing: false, isDone: false }];
-    setSubtasks(newSubtasks);
-    editTodo({ ...todo, subtasks: newSubtasks });
+    if (text.trim()) {
+      const newSubtasks = [...subtasks, { text, isEditing: false, isDone: false }];
+      setSubtasks(newSubtasks);
+      editTodo({ ...todo, subtasks: newSubtasks });
+    }
   };
 
   const deleteSubtask = index => {
@@ -42,8 +46,10 @@ const TodoItem = ({ todo, deleteTodo, editTodo }) => {
         <form
           onSubmit={e => {
             e.preventDefault();
-            editTodo({ ...todo, text: editInput });
-            setIsEditing(false);
+            if (editInput.trim()) {
+              editTodo({ ...todo, text: editInput });
+              setIsEditing(false);
+            }
           }}
         >
           <input value={editInput} onChange={e => setEditInput(e.target.value)} />
@@ -101,8 +107,10 @@ const SubtaskItem = ({ subtask, deleteSubtask, editSubtask, toggleSubtaskDone })
         <form
           onSubmit={e => {
             e.preventDefault();
-            editSubtask({ text: editInput, isEditing: false, isDone: subtask.isDone });
-            setIsEditing(false);
+            if (editInput.trim()) {
+              editSubtask({ text: editInput, isEditing: false, isDone: subtask.isDone });
+              setIsEditing(false);
+            }
           }}
         >
           <input value={editInput} onChange={e => setEditInput(e.target.value)} />

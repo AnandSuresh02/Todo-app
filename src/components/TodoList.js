@@ -4,7 +4,12 @@ import TodoItem from './TodoItem';
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
 
-  const addTodo = text => setTodos([...todos, { text, isEditing: false, subtasks: [] }]);
+  const addTodo = text => {
+    if (text.trim()) {
+      setTodos([...todos, { text, isEditing: false, subtasks: [], isDone: false }]);
+    }
+  };
+
   const deleteTodo = index => setTodos(todos.filter((_, i) => i !== index));
   const editTodo = (index, updatedTodo) => {
     const newTodos = [...todos];
