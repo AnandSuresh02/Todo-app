@@ -226,19 +226,23 @@ h4 {
   flex-direction: column;
   color: white;
   padding: 10px 0;
-  border-bottom: 1px solid #ddd;
 }
 
 .todo-item.expanded {
   background-color: #333;
   color: white;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 30px;
 }
 
 .todo-item .todo-main {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.todo-item .main-content {
+  display: flex;
   align-items: center;
 }
 
@@ -260,8 +264,11 @@ h4 {
 }
 
 .subtasks {
-  margin-left: 20px;
-  margin-top: 10px;
+  background-color: #3d3d3d;
+  color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.24);
+  border-radius: 30px;
 }
 
 .subtask-item {
@@ -269,6 +276,11 @@ h4 {
   justify-content: space-between;
   align-items: center;
   padding: 5px 0;
+}
+
+.subtask-item .subtask-content {
+  display: flex;
+  align-items: center;
 }
 
 .subtask-item .subtask-buttons {
@@ -297,6 +309,10 @@ h4 {
   transform: rotate(180deg);
 }
 
+.done {
+  text-decoration: line-through;
+  color: #c0c0c0;
+}
 
 .form button{
   margin-left: 20px;

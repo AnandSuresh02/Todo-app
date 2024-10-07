@@ -6,8 +6,12 @@ const TodoItem = ({ todo, deleteTodo, editTodo }) => {
   const [subtasks, setSubtasks] = useState(todo.subtasks || []);
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const toggleDone = () => {
+    editTodo({ ...todo, isDone: !todo.isDone });
+  };
+
   const addSubtask = text => {
-    const newSubtasks = [...subtasks, { text, isEditing: false }];
+    const newSubtasks = [...subtasks, { text, isEditing: false, isDone: false }];
     setSubtasks(newSubtasks);
     editTodo({ ...todo, subtasks: newSubtasks });
   };
@@ -21,6 +25,13 @@ const TodoItem = ({ todo, deleteTodo, editTodo }) => {
   const editSubtask = (index, updatedSubtask) => {
     const newSubtasks = [...subtasks];
     newSubtasks[index] = updatedSubtask;
+    setSubtasks(newSubtasks);
+    editTodo({ ...todo, subtasks: newSubtasks });
+  };
+
+  const toggleSubtaskDone = index => {
+    const newSubtasks = [...subtasks];
+    newSubtasks[index] = { ...newSubtasks[index], isDone: !newSubtasks[index].isDone };
     setSubtasks(newSubtasks);
     editTodo({ ...todo, subtasks: newSubtasks });
   };
@@ -40,7 +51,10 @@ const TodoItem = ({ todo, deleteTodo, editTodo }) => {
         </form>
       ) : (
         <div className="todo-main">
-          <span>{todo.text}</span>
+          <div className="main-content">
+            <input type="checkbox" checked={todo.isDone} onChange={toggleDone} />
+            <span className={todo.isDone ? 'done' : ''}>{todo.text}</span>
+          </div>
           <div className="buttons">
             <button onClick={() => setIsEditing(true)}>Edit</button>
             <button onClick={deleteTodo}>Delete</button>
@@ -58,6 +72,7 @@ const TodoItem = ({ todo, deleteTodo, editTodo }) => {
               subtask={subtask}
               deleteSubtask={() => deleteSubtask(index)}
               editSubtask={updatedSubtask => editSubtask(index, updatedSubtask)}
+              toggleSubtaskDone={() => toggleSubtaskDone(index)}
             />
           ))}
           <form
@@ -76,7 +91,7 @@ const TodoItem = ({ todo, deleteTodo, editTodo }) => {
   );
 };
 
-const SubtaskItem = ({ subtask, deleteSubtask, editSubtask }) => {
+const SubtaskItem = ({ subtask, deleteSubtask, editSubtask, toggleSubtaskDone }) => {
   const [isEditing, setIsEditing] = useState(subtask.isEditing);
   const [editInput, setEditInput] = useState(subtask.text);
 
@@ -86,7 +101,7 @@ const SubtaskItem = ({ subtask, deleteSubtask, editSubtask }) => {
         <form
           onSubmit={e => {
             e.preventDefault();
-            editSubtask({ text: editInput, isEditing: false });
+            editSubtask({ text: editInput, isEditing: false, isDone: subtask.isDone });
             setIsEditing(false);
           }}
         >
@@ -95,7 +110,10 @@ const SubtaskItem = ({ subtask, deleteSubtask, editSubtask }) => {
         </form>
       ) : (
         <>
-          <span>{subtask.text}</span>
+          <div className="subtask-content">
+            <input type="checkbox" checked={subtask.isDone} onChange={toggleSubtaskDone} />
+            <span className={subtask.isDone ? 'done' : ''}>{subtask.text}</span>
+          </div>
           <div className="subtask-buttons">
             <button onClick={() => setIsEditing(true)}>Edit</button>
             <button onClick={deleteSubtask}>Delete</button>
