@@ -40,6 +40,24 @@ const TodoItem = ({ todo, deleteTodo, editTodo }) => {
     editTodo({ ...todo, subtasks: newSubtasks });
   };
 
+  const exportToMarkdown = () => {
+    const completed = subtasks.filter(subtask => subtask.isDone);
+    const pending = subtasks.filter(subtask => !subtask.isDone);
+    const markdown = `# ${todo.text}\n\n## Summary: ${completed.length}/${
+      subtasks.length
+    } todos completed.\n\n## Pending\n\n${pending
+      .map(subtask => `- [ ] ${subtask.text}`)
+      .join('\n')}\n\n## Completed\n\n${completed.map(subtask => `- [x] ${subtask.text}`).join('\n')}`;
+    const blob = new Blob([markdown], { type: 'text/markdown' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${todo.text.replace(/ /g, '_')}.md`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className={`todo-item ${isExpanded ? 'expanded' : ''}`}>
       {isEditing ? (
@@ -67,6 +85,7 @@ const TodoItem = ({ todo, deleteTodo, editTodo }) => {
             <button onClick={() => setIsExpanded(!isExpanded)}>
               <span className={`arrow ${isExpanded ? 'expanded' : ''}`}>&#9660;</span>
             </button>
+            {isExpanded && <button onClick={exportToMarkdown}>Export as Gist</button>}
           </div>
         </div>
       )}
