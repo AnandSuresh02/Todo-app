@@ -8,16 +8,18 @@ const Settings = ({ user }) => {
   const [password, setPassword] = useState('');
   const [profilePic, setProfilePic] = useState(user.photoURL || 'https://via.placeholder.com/150');
   const [message, setMessage] = useState('');
+  
+  const isGoogleSignIn = user.providerData.some(provider => provider.providerId === 'google.com');
 
   const handleUpdateProfile = async () => {
     try {
       if (name !== user.displayName) {
         await updateProfile(auth.currentUser, { displayName: name });
       }
-      if (email !== user.email) {
+      if (email !== user.email && !isGoogleSignIn) {
         await updateEmail(auth.currentUser, email);
       }
-      if (password) {
+      if (password && !isGoogleSignIn) {
         await updatePassword(auth.currentUser, password);
       }
       setMessage('Profile updated successfully');
@@ -49,14 +51,18 @@ const Settings = ({ user }) => {
         Name
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
       </label>
-      <label>
-        Email
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      </label>
-      <label>
-        Password
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      </label>
+      {!isGoogleSignIn && (
+        <>
+          <label>
+            Email
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          </label>
+          <label>
+            Password
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          </label>
+        </>
+      )}
       <button onClick={handleUpdateProfile}>Update Profile</button>
       {message && <p>{message}</p>}
     </div>
