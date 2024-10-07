@@ -40,8 +40,9 @@ const Login = () => {
       </div>
       </form>
       <h5>or</h5>
-
       <button onClick={() => handleOAuthLogin(new GoogleAuthProvider())}>Login with Google</button>
+      <h5>If you don't have an account yet, sign up now</h5>
+      <button onClick={() => navigate('/signup')}>Sign up now</button>
     </div>
   );
 };

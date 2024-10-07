@@ -5,6 +5,7 @@ import { auth } from './firebaseConfig';
 import LandingPage from './components/Landing';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
+import Signup from './components/SignUp';
 import Settings from './components/Settings';
 import Admin from './components/Admin';
 import './App.css';
@@ -32,6 +33,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={user ? <Navigate to="/dashboard" /> : <LandingPage />} />
           <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
+          <Route path="/signup" element={user ? <Navigate to="/dashboard" /> : <Signup />} />
           <Route path="/dashboard" element={user ? <Dashboard user={user} /> : <Navigate to="/login" />} />
           <Route path="/settings" element={user ? <Settings user={user} /> : <Navigate to="/login" />} />
           <Route path="/admin" element={user ? <Admin /> : <Navigate to="/login" />} />

@@ -146,6 +146,53 @@ h4 {
   text-align: center;
 }
 
+.sign-up {
+  background-color: #ffffff;
+  color: #333;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+}
+
+.sign-up h2 {
+  color: #4169e1;
+}
+
+.sign-up input {
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: #333;
+  border: 1px solid #4169e1;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  width: 70%;
+  margin: 10px;
+  inline-size: 200px;
+  overflow-wrap: break-word;
+}
+
+.sign-up button {
+  padding: 10px 20px;
+  background-color: #4169e1;
+  border: 1px solid #4169e1;
+  box-shadow: 0 0 3px rgb(177, 177, 177);
+  color: white;
+  border-radius: 50px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.sign-up button:hover {
+  background-color: #1e90ff;
+}
+
+.sign-up p {
+  margin-top: 20px;
+}
+
 .settings {
   display: flex;
   flex-direction: column;
