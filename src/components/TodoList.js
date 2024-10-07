@@ -1,51 +1,30 @@
 import React, { useState } from 'react';
+import TodoItem from './TodoItem';
 
-const TodoList = ({ todos, addTodo, deleteTodo, editTodo }) => {
-  const [input, setInput] = useState('');
+const TodoList = () => {
+  const [todos, setTodos] = useState([]);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    addTodo(input);
-    setInput('');
+  const addTodo = text => setTodos([...todos, { text, isEditing: false, subtasks: [] }]);
+  const deleteTodo = index => setTodos(todos.filter((_, i) => i !== index));
+  const editTodo = (index, updatedTodo) => {
+    const newTodos = [...todos];
+    newTodos[index] = updatedTodo;
+    setTodos(newTodos);
   };
 
   return (
     <div className="todo-list">
-      <form onSubmit={handleSubmit}>
-        <input value={input} onChange={e => setInput(e.target.value)} placeholder="Add a new task" />
+      <form onSubmit={e => {
+        e.preventDefault();
+        addTodo(e.target.elements.todo.value);
+        e.target.elements.todo.value = '';
+      }}>
+        <input name="todo" placeholder="Add a new task" />
         <button type="submit">Add</button>
       </form>
       {todos.map((todo, index) => (
-        <TodoItem key={index} todo={todo} deleteTodo={() => deleteTodo(index)} editTodo={text => editTodo(index, text)} />
+        <TodoItem key={index} todo={todo} deleteTodo={() => deleteTodo(index)} editTodo={updatedTodo => editTodo(index, updatedTodo)} />
       ))}
-    </div>
-  );
-};
-
-const TodoItem = ({ todo, deleteTodo, editTodo }) => {
-  const [isEditing, setIsEditing] = useState(todo.isEditing);
-  const [editInput, setEditInput] = useState(todo.text);
-
-  return (
-    <div className="todo-item">
-      {isEditing ? (
-        <form
-          onSubmit={e => {
-            e.preventDefault();
-            editTodo(editInput);
-            setIsEditing(false);
-          }}
-        >
-          <input value={editInput} onChange={e => setEditInput(e.target.value)} />
-          <button type="submit">Save</button>
-        </form>
-      ) : (
-        <>
-          <span>{todo.text}</span>
-          <button onClick={() => setIsEditing(true)}>Edit</button>
-          <button onClick={deleteTodo}>Delete</button>
-        </>
-      )}
     </div>
   );
 };

@@ -223,26 +223,80 @@ h4 {
 
 .todo-item {
   display: flex;
+  flex-direction: column;
   color: white;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.todo-item.expanded {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.todo-item .todo-main {
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;;
-  border-bottom: 1px solid #7e7e7e;
 }
 
-.todo-item span {
-  flex-grow: 1;
-  text-align: left;
+.todo-item .buttons {
+  display: flex;
 }
 
-.todo-item button {
+.todo-item .buttons button {
   margin-left: 10px;
+  background-color: #757575;
+  border: none;
+  color: white;
+  border-radius: 30px;
+  padding: 5px 10px;
 }
 
-.todo-item form{
-  flex-grow: 1;
-  text-align: left;
+.todo-item .buttons button:hover {
+  background-color: #5f5f5f;
 }
+
+.subtasks {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.subtask-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.subtask-item .subtask-buttons {
+  display: flex;
+}
+
+.subtask-item .subtask-buttons button {
+  margin-left: 10px;
+  background-color: #757575;
+  border: none;
+  color: white;
+  border-radius: 30px;
+  padding: 5px 10px;
+}
+
+.subtask-item .subtask-buttons button:hover {
+  background-color: #5f5f5f;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s;
+}
+
+.arrow.expanded {
+  transform: rotate(180deg);
+}
+
 
 .form button{
   margin-left: 20px;
