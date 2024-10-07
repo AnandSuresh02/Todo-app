@@ -340,6 +340,38 @@ h4 {
   color: #c0c0c0;
 }
 
+.admin-panel {
+  padding: 20px;
+  background-color: #121212;
+  color: #E0E0E0;
+  max-width: 800px;
+  margin: auto;
+  border-radius: 30px;
+}
+
+.admin-panel h1 {
+  color: white;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #333;
+  padding: 10px;
+  text-align: left;
+  border-radius: 8px;
+}
+
+th {
+  background-color: #757575;
+  color: white;
+}
+
 .form button{
   margin-left: 20px;
 }

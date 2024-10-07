@@ -6,6 +6,7 @@ import LandingPage from './components/Landing';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Settings from './components/Settings';
+import Admin from './components/Admin';
 import './App.css';
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
           <Route path="/dashboard" element={user ? <Dashboard user={user} /> : <Navigate to="/login" />} />
           <Route path="/settings" element={user ? <Settings user={user} /> : <Navigate to="/login" />} />
+          <Route path="/admin" element={user ? <Admin /> : <Navigate to="/login" />} />
         </Routes>
       </div>
     </Router>
