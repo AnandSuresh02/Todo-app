@@ -86,7 +86,7 @@ const TodoItem = ({ todo, deleteTodo, editTodo }) => {
               <span className={`arrow ${isExpanded ? 'expanded' : ''}`}>&#9660;</span>
             </button>
             {isExpanded && <button onClick={exportToMarkdown}>Export as Gist</button>}
-          </div>
+            </div>
         </div>
       )}
       {isExpanded && (
