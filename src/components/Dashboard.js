@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebaseConfig';
-import Settings from './Settings';
 import TodoList from './TodoList';
 import '../App.css';
 import defaultProfilePic from '../images/defaultProfilePic.png';
