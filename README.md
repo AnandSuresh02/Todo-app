@@ -25,4 +25,9 @@ You may also see any lint errors in the console.
 This project was created with [React.js](https://react.dev/) for the front-end and the backend is handled by [Firebase](https://firebase.google.com/) for authentication and Firestore as the database.
 
 ## Report bugs/ feature request
+
 Feel free to reach out and make a pull request or raise an issue if there's any bugs that needed to be addressed or there are any features that can be added to improve the user experience. Any sort of contributions are welcome.
+
+## Admin panel
+
+Route to /admin from root to view the stored data as a table.
