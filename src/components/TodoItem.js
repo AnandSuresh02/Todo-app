@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { BsFillTrashFill } from "react-icons/bs";
+import { BsPencil } from "react-icons/bs";
 
 const TodoItem = ({ todo, deleteTodo, editTodo }) => {
   const [isEditing, setIsEditing] = useState(todo.isEditing);
@@ -146,8 +148,12 @@ const TodoItem = ({ todo, deleteTodo, editTodo }) => {
             <span className={todo.isDone ? 'done' : ''}>{todo.text}</span>
           </div>
           <div className="buttons">
-            <button onClick={() => setIsEditing(true)}>Edit</button>
-            <button onClick={deleteTodo}>Delete</button>
+            <button onClick={() => setIsEditing(true)}>
+              <BsPencil />
+            </button>
+            <button onClick={deleteTodo}>
+              <BsFillTrashFill />
+            </button>
             <button onClick={() => setIsExpanded(!isExpanded)}>
               <span className={`arrow ${isExpanded ? 'expanded' : ''}`}>&#9660;</span>
             </button>
@@ -253,8 +259,12 @@ const SubtaskItem = ({ subtask, deleteSubtask, editSubtask, toggleSubtaskDone })
             <span className={subtask.isDone ? 'done' : ''}>{subtask.text}</span>
           </div>
           <div className="subtask-buttons">
-            <button onClick={() => setIsEditing(true)}>Edit</button>
-            <button onClick={deleteSubtask}>Delete</button>
+            <button onClick={() => setIsEditing(true)}>
+              <BsPencil />
+            </button>
+            <button onClick={deleteSubtask}>
+              <BsFillTrashFill />
+            </button>
           </div>
         </>
       )}
